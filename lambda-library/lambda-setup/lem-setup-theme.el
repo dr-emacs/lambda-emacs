@@ -119,6 +119,58 @@
   (lambda-themes-set-italic-comments t)
   (lambda-themes-set-italic-keywords t))
 
+;;;; Builtin Modus Themes
+;; Set a default theme
+(use-package modus-themes
+  :straight (modus-themes :type built-in)
+  :init
+  ;; Add all your customizations prior to loading the themes
+  (setq modus-themes-italic-constructs t
+        modus-themes-bold-constructs t)
+  (setq
+   ;; modus-themes-vivendi-color-overrides
+   ;; '((bg-region-accent-subtle . "#240f55")) ;; Default
+   ;; '((bg-region-accent-subtle . "#323da2"));; Good candidate
+   ;; '((bg-region-accent-subtle . "#304466"))
+   ;; modus-themes-operandi-color-overrides
+   ;; '((bg-main . "#FAFAFA")
+   ;;  (fg-main . "#101010")
+   ;;  (fg-window-divider-inner . "#FAFAFA"))
+   modus-themes-completions '((matches . (extrabold))
+			                  (selection . (semibold accented))
+			                  (popup . (accented intense)))
+   modus-themes-diffs nil ; 'fg-only
+   modus-themes-fringes 'intense
+   modus-themes-hl-line '(accented intense)
+   modus-themes-intense-markup t
+   modus-themes-links '(faint background)
+   modus-themes-mixed-fonts t
+   ;; modus-themes-no-mixed-fonts t
+   modus-themes-mode-line '(accented borderless)
+   ;; modus-themes-mode-line '(accented 3d)
+   modus-themes-org-blocks 'gray-background
+   modus-themes-paren-match '(bold intense)
+   modus-themes-prompts '(intense accented)
+   modus-themes-region '(bg-only accented)
+   modus-themes-scale-headings t
+   modus-themes-slanted-constructs t
+   modus-themes-subtle-line-numbers t
+   modus-themes-syntax '(alt-syntax yellow-comments green-strings)
+   ;; modus-themes-syntax '(alt-syntax)
+   modus-themes-tabs-accented t
+   modus-themes-headings
+   '((1 . (variable-pitch light 1.6))
+     (2 . (overline semibold 1.4))
+     (3 . (monochrome overline 1.2 background))
+     (4 . (overline 1.1))
+     (t . (rainbow 1.05)))
+   modus-themes-completions
+   '((matches . (extrabold background))
+     (selection . (semibold italic)))
+   )
+  :init (load-theme 'modus-vivendi :noconfirm t)
+  :bind ("<f5>" . modus-themes-toggle))
+
 ;;;;; System Appearance Hook
 ;; See https://github.com/d12frosted/homebrew-emacs-plus#system-appearance-change
 (defun lem--system-apply-theme (appearance)
@@ -149,14 +201,14 @@
   :type 'symbol)
 
 ;; If set, load user theme, otherwise load lambda-themes
-(cond ((bound-and-true-p lem-ui-theme)
-       (load-theme lem-ui-theme t))
-      ((eq active-theme 'light-theme)
-       (load-theme 'lambda-light t))
-      ((eq active-theme 'dark-theme)
-       (load-theme 'lambda-dark t))
-      (t
-       (load-theme 'lambda-light t)))
+;; (cond ((bound-and-true-p lem-ui-theme)
+;;        (load-theme lem-ui-theme t))
+;;       ((eq active-theme 'light-theme)
+;;        (load-theme 'lambda-light t))
+;;       ((eq active-theme 'dark-theme)
+;;        (load-theme 'lambda-dark t))
+;;       (t
+;;        (load-theme 'lambda-light t)))
 
 ;; kind-icon needs to have its cache flushed after theme change
 (with-eval-after-load 'kind-icon
