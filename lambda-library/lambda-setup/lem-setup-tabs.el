@@ -42,7 +42,7 @@
   (tab-bar-tab-hints t) ;; show numbers in tabs
   ;; Unless another file/buffer is designated, start from workspace scratch buffer
   (tab-bar-new-tab-choice "*scratch*")
-  (tab-bar-select-tab-modifiers '(super))
+  (tab-bar-select-tab-modifiers '(hyper))
   (tab-bar-close-tab-select 'recent)
   (tab-bar-new-tab-to 'rightmost)
   (tab-bar-close-last-tab-choice 'tab-bar-mode-disable)
@@ -93,6 +93,8 @@
             "")
         (propertize " " 'display '(space :width (4))))
        'face (funcall tab-bar-tab-face-function tab))))
+
+
 
   ;; See https://github.com/rougier/nano-modeline/issues/33
   (defun lem--tab-bar-suffix ()
