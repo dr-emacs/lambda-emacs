@@ -34,8 +34,8 @@
 (defun lem-call-emacs ()
   (interactive)
   (start-process "Emacs" nil
-                 ;; (executable-find "/usr/local/bin/emacs")))
-                 (executable-find "/Applications/Emacs.app/Contents/MacOS/Emacs")))
+                 (executable-find "~/usr/bin/emacs")))
+                 ;; (executable-find "/Applications/Emacs.app/Contents/MacOS/Emacs")))
 ;; (executable-find "Emacs")))
 
 ;;;;; Archive region to setup-archive
@@ -118,12 +118,12 @@
 ;; the crux commands are related to the editing experience, but there are also a
 ;; bunch of utility commands that are just very useful to have (e.g.
 ;; crux-open-with and crux-reopen-as-root). Originally part of Emacs Prelude.
-(use-package crux
-  :straight (:type git :host github :repo "bbatsov/crux")
-  :defer 1
-  :bind
-  ("C-k"   . crux-smart-kill-line)
-  ("C-a"   . crux-move-beginning-of-line))
+;; (use-package crux
+;;   :straight (:type git :host github :repo "bbatsov/crux")
+;;   :defer 1
+;;   :bind
+;;   ("C-k"   . crux-smart-kill-line)
+;;   ("C-a"   . crux-move-beginning-of-line))
 
 ;;;; Search Functions
 ;;;;; Search given directory
