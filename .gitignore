@@ -3,3 +3,5 @@ eln-cache
 tabsession.el
 var
 lambda-library/lambda-user
+/eshell/
+/transient/
