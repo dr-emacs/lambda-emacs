@@ -7,6 +7,13 @@
 
 ;; Shell & General terminal settings
 
+(use-package flymake-shellcheck
+  :commands flymake-shellcheck-load
+  :hook (sh-mode-hook . flymake-shellcheck-load))
+
+(use-package shfmt
+  :hook (sh-mode-hook . shfmt-on-save-mode))
+
 ;;; Compilation
 (use-package compile
   :straight (:type built-in)
