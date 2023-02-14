@@ -58,6 +58,7 @@
   :bind ((:map magit-log-mode-map
           ;; Keybindings for use with updating packages interactively
           ("Q" . #'exit-recursive-edit)))
+  :bind ("C-c g" . #'magit-status)
   :init
   ;; Suppress the message we get about "Turning on
   ;; magit-auto-revert-mode" when loading Magit.
