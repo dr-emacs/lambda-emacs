@@ -367,10 +367,26 @@ targets."
 
 ;;;; In-Buffer Completion
 ;;;;; Corfu
+;; (use-package corfu
+;;   :straight (corfu :files (:defaults "extensions/*")
+;;                    :includes (corfu-info corfu-history))
+;;   :config
+;;   (setq corfu-popupinfo-delay 0)
+;;   :init
+;;   (global-corfu-mode)
+;;   (corfu-popupinfo-mode))
+
 (use-package corfu
-  :straight (:type git :host github :repo "minad/corfu")
-  :hook
-  (emacs-startup . global-corfu-mode)
+  ;; :straight (:type git :host github :repo "minad/corfu")
+  :straight (corfu :files (:defaults "extensions/*")
+                   :includes (corfu-info corfu-history))
+  :config
+  (setq corfu-popupinfo-delay 0)
+  :init
+  (global-corfu-mode)
+  (corfu-popupinfo-mode)
+  ;; :hook
+  ;; (emacs-startup . global-corfu-mode)
   :bind
   (:map corfu-map
    ("C-j"      . corfu-next)
@@ -415,23 +431,23 @@ targets."
          ("C-M-/" . dabbrev-expand)))
 
 ;;;;; Corfu Doc
-(use-package corfu-doc
-  :straight (corfu-doc :type git :host github :repo "galeo/corfu-doc")
-  :hook   (corfu-mode . corfu-doc-mode)
-  :bind (:map corfu-map
-         ("C-d" . corfu-doc-toggle)
-         ;;        ;; This is a manual toggle for the documentation window.
-         ;;        ([remap corfu-show-documentation] . corfu-doc-toggle) ; Remap the default doc command
-         ;; Scroll in the documentation window
-         ("M-k" . corfu-doc-scroll-up)
-         ("M-j" . corfu-doc-scroll-down))
-  :custom
-  (corfu-doc-max-width 70)
-  (corfu-doc-max-height 20)
-  :config
-  ;; ignore deprecation warning
-  (with-eval-after-load 'warnings
-    (add-to-list 'warning-suppress-types '(corfu-doc))))
+;; (use-package corfu-doc
+;;   :straight (corfu-doc :type git :host github :repo "galeo/corfu-doc")
+;;   :hook   (corfu-mode . corfu-doc-mode)
+;;   :bind (:map corfu-map
+;;          ("C-d" . corfu-doc-toggle)
+;;          ;;        ;; This is a manual toggle for the documentation window.
+;;          ;;        ([remap corfu-show-documentation] . corfu-doc-toggle) ; Remap the default doc command
+;;          ;; Scroll in the documentation window
+;;          ("M-k" . corfu-doc-scroll-up)
+;;          ("M-j" . corfu-doc-scroll-down))
+;;   :custom
+;;   (corfu-doc-max-width 70)
+;;   (corfu-doc-max-height 20)
+;;   :config
+;;   ;; ignore deprecation warning
+;;   (with-eval-after-load 'warnings
+;;     (add-to-list 'warning-suppress-types '(corfu-doc))))
 
 ;;;;;; Corfu Extensions (Cape)
 ;; Add extensions
