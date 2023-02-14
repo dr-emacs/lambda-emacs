@@ -9,10 +9,17 @@
 
 (use-package flymake-shellcheck
   :commands flymake-shellcheck-load
-  :hook (sh-mode-hook . flymake-shellcheck-load))
+  :hook (sh-mode . flymake-shellcheck-load))
+
+(defun shfmt-message ()
+  (message "SHFMT hook"))
 
 (use-package shfmt
-  :hook (sh-mode-hook . shfmt-on-save-mode))
+  :init (message "SHFMT init")
+  :config (message "SHFMT config")
+  ;; :hook (sh-mode . shfmt-message)
+  :hook (sh-mode . shfmt-on-save-mode))
+;; (add-hook 'sh-mode-hook 'shfmt-on-save-mode)
 
 ;;; Compilation
 (use-package compile
