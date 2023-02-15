@@ -25,7 +25,7 @@
   ;; Use Ripgrep if installed
   (when (shell-command-to-string "command rg --version")
     (setq xref-search-program 'ripgrep))
-  (setq lem-project-dir "~/Dropbox/Work/projects")
+  (setq lem-project-dir "~/debian")
   ;; remove deleted projects from list
   (project-forget-zombie-projects))
 
