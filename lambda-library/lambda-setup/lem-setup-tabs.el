@@ -46,13 +46,13 @@
   (tab-bar-close-tab-select 'recent)
   (tab-bar-new-tab-to 'rightmost)
   (tab-bar-close-last-tab-choice 'tab-bar-mode-disable)
-  (tab-bar-tab-name-format-function #'lem--tab-bar-tab-name-format)
+  ;; (tab-bar-tab-name-format-function #'lem--tab-bar-tab-name-format)
   (tab-bar-new-button nil)
   (tab-bar-close-button nil)
-  (tab-bar-format '(tab-bar-format-history
-                    tab-bar-format-tabs
-                    lem--tab-bar-suffix
-                    tab-bar-format-add-tab))
+  (tab-bar-format-XXX '(tab-bar-format-history
+                        tab-bar-format-tabs
+                        lem--tab-bar-suffix
+                        tab-bar-format-add-tab))
   :config
   ;; Tab bar numbers
   ;; https://christiantietze.de/posts/2022/02/emacs-tab-bar-numbered-tabs/

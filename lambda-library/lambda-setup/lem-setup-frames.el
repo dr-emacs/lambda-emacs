@@ -33,7 +33,7 @@
   (setq-default default-frame-alist
                 (append (list
                          '(frame-title-format . nil)
-                         '(internal-border-width . 18)
+                         '(internal-border-width . 8)
                          '(tool-bar-lines . 0)
                          '(vertical-scroll-bars . nil)
                          '(horizontal-scroll-bars . nil))))

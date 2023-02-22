@@ -289,7 +289,9 @@
   :straight (:type built-in)
   :custom
   ;; allow fringe indicators
-  (fringe-mode '(1 . 0)))
+  ;; (fringe-mode '(1 . 0))
+  (fringe-mode '(8 . 8))
+  )
 
 ;;; Provide
 (provide 'lem-setup-buffers)

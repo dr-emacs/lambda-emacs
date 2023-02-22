@@ -107,8 +107,10 @@ Use a plist with the same key names as accepted by `set-face-attribute'."
 ;; When using `text-scale-increase', this sets each 'step' to about one point size.
 (setq text-scale-mode-step 1.08)
 (bind-key* "s-=" #'text-scale-increase)
+(bind-key* "s-+" #'text-scale-increase)
 (bind-key* "s--" #'text-scale-decrease)
 (bind-key* "s-0" #'text-scale-adjust)
+(bind-key* "s-#" #'text-scale-adjust)
 
 ;;;;; Icons
 ;; Check for icons FIXME: this should be less verbose but haven't been able to

@@ -1,6 +1,7 @@
 *.DS_Store
 eln-cache
 tabsession.el
+projects
 var
 lambda-library/lambda-user
 /eshell/

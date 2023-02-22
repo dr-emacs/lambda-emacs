@@ -164,9 +164,9 @@
      (3 . (monochrome overline 1.2 background))
      (4 . (overline 1.1))
      (t . (rainbow 1.05)))
-   modus-themes-completions
-   '((matches . (extrabold background))
-     (selection . (semibold italic)))
+   ;; modus-themes-completions
+   ;; '((matches . (extrabold background))
+   ;;   (selection . (semibold italic)))
    )
   :init (load-theme 'modus-vivendi :noconfirm t)
   :bind ("<f5>" . modus-themes-toggle))

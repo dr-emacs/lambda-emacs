@@ -255,8 +255,8 @@ Lisp function does not specify a special indentation."
            (t $else)))))))
 
 ;;;;; Haskell
-(use-package haskell-mode
-  :commands haskell-mode)
+;; (use-package haskell-mode
+;;   :commands haskell-mode)
 
 ;;;;; HTML
 (use-package web-mode
@@ -270,18 +270,18 @@ Lisp function does not specify a special indentation."
         web-mode-enable-auto-quoting t))
 
 ;;;;; Lua
-(use-package lua-mode
-  :commands lua-mode
-  :init
-  (dolist (pattern '("\\.lua\\'"))
-    (add-to-list 'auto-mode-alist (cons pattern 'lua-mode))))
+;; (use-package lua-mode
+;;   :commands lua-mode
+;;   :init
+;;   (dolist (pattern '("\\.lua\\'"))
+;;     (add-to-list 'auto-mode-alist (cons pattern 'lua-mode))))
 
 ;;;;; PHP
-(use-package php-mode
-  :commands php-mode
-  :init
-  (dolist (pattern '("\\.php\\'"))
-    (add-to-list 'auto-mode-alist (cons pattern 'php-mode))))
+;; (use-package php-mode
+;;   :commands php-mode
+;;   :init
+;;   (dolist (pattern '("\\.php\\'"))
+;;     (add-to-list 'auto-mode-alist (cons pattern 'php-mode))))
 
 ;;;;; Shell Scripts
 (use-package sh-script
@@ -319,8 +319,8 @@ Lisp function does not specify a special indentation."
   :commands (plist-mode))
 
 ;;;;; Vim
-(use-package vimrc-mode
-  :commands vimrc-mode)
+;; (use-package vimrc-mode
+;;   :commands vimrc-mode)
 
 ;;;; Macrostep
 ;; https://github.com/joddie/macrostep Interactive macro expander for emacs
