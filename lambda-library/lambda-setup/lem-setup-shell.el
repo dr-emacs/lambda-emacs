@@ -7,23 +7,10 @@
 
 ;; Shell & General terminal settings
 
-(use-package flymake-shellcheck
-  :commands flymake-shellcheck-load
-  :hook (sh-mode . flymake-shellcheck-load))
-
-(defun shfmt-message ()
-  (message "SHFMT hook"))
-
-(use-package shfmt
-  :init (message "SHFMT init")
-  :config (message "SHFMT config")
-  ;; :hook (sh-mode . shfmt-message)
-  :hook (sh-mode . shfmt-on-save-mode))
-;; (add-hook 'sh-mode-hook 'shfmt-on-save-mode)
-
 ;;; Compilation
 (use-package compile
-  :straight (:type built-in)
+  ;; :straight (:type built-in)
+  :ensure nil
   :defer 2
   ;; Add recompile to project map
   :bind (:map project-prefix-map
@@ -93,119 +80,23 @@
 ;; Emacs doesn’t handle less well, so use cat instead for the shell pager
 (setenv "PAGER" "cat")
 
-;;;; Vterm
-;; Better terminal function---much faster than ansi-term
-(use-package vterm
-  :commands (vterm vterm-other-window)
-  :bind ((:map vterm-mode-map
-          ;; fix issue with fzf
-          ;; "C-c" #'vterm-send-C-c
-          ("C-g" . #'vterm--self-insert)
-          ("C-j" . #'vterm-send-down   )
-          ("C-k" . #'vterm-send-up     )
-          ("C-l" . #'vterm-clear       )
-          ("s-v" . #'vterm-yank        )
-          ("C-v" . #'vterm-yank        )
-          ;; "<C-escape>" #'evil-collection-vterm-toggle-send-escape)
-          ("<C-escape>" . #'lem-vterm-escape-toggle)))
-  :custom (vterm-install t)
+;;;;; EAT (Emulate a terminal)
+(use-package eat
   :config
-  (eval-when-compile
-    (setq vterm-always-compile-module t))
-  (setq vterm-keymap-exceptions nil)
-  ;; set colors -- this is best with dark solarized right now
-  (setq vterm-kill-buffer-on-exit t)
-  (setq vterm-max-scrollback 100000)
-  (setq ansi-color-names-vector
-        ["#002833" "#dc322f" "#859900" "#b58900" "#268bd2" "#d33682" "#2aa198" "#657b83"])
-  (setq vterm-term-environment-variable "xterm-256color"))
-
-;; Escape to vim mode in shell
-(defun lem-vterm-escape-toggle ()
-  (interactive)
-  ;; (evil-collection-vterm-toggle-send-escape)
-  (vterm-send-key "<escape>"))
-
-;; directory tracking
-(defun vterm--rename-buffer-as-title (title)
-  (let ((dir (string-trim-left (concat (nth 1 (split-string title ":")) "/"))))
-    (cd-absolute dir)
-    (rename-buffer (format "term %s" title) t)))
-(add-hook 'vterm-set-title-functions 'vterm--rename-buffer-as-title)
-
-;; vterm frame
-(defun vterm-frame ()
-  "Open a new terminal frame."
-  (interactive)
-  (let ((frame (selected-frame)))
-    (with-selected-frame frame
-      (progn
-        (vterm)
-        (set-frame-parameter frame 'name "terminal")))))
-
-;;;; Run Command in Vterm
-;; See https://www.reddit.com/r/emacs/comments/ft84xy/run_shell_command_in_new_vterm/
-;; https://github.com/akermu/emacs-libvterm/pull/145
-
-(defun lem-run-in-vterm-kill (process event)
-  "A process sentinel. Kills PROCESS's buffer if it is live."
-  (let ((b (process-buffer process)))
-    (and (buffer-live-p b)
-         (kill-buffer b))))
-
-(defun lem-run-in-vterm (command)
-  "Execute string COMMAND in a new vterm.
-
-Interactively, prompt for COMMAND with the current buffer's file
-name supplied. When called from Dired, supply the name of the
-file at point.
-
-Like `async-shell-command`, but run in a vterm for full terminal features.
-
-The new vterm buffer is named in the form `*foo bar.baz*`, the
-command and its arguments in earmuffs.
-
-When the command terminates, the shell remains open, but when the
-shell exits, the buffer is killed."
-  (interactive
-   (list
-    (let* ((f (cond (buffer-file-name)
-                    ((eq major-mode 'dired-mode)
-                     (dired-get-filename nil t))))
-           (filename (concat " " (shell-quote-argument (and f (file-relative-name f))))))
-      (read-shell-command "Terminal command: "
-                          (cons filename 0)
-                          (cons 'shell-command-history 1)
-                          (list filename)))))
-  (with-current-buffer (vterm (concat "*" command "*"))
-    (set-process-sentinel vterm--process #'run-in-vterm-kill)
-    (vterm-send-string command)
-    (vterm-send-return)))
-
-;;;; Multi-Vterm
-(use-package multi-vterm
-  :commands (multi-vterm
-             multi-vterm-project
-             multi-vterm-dedicated-toggle))
-
-;;; Virtualenvwrapper
-(use-package virtualenvwrapper
-  :after (:any eshell ansi-term)
-  :config
-  (venv-initialize-interactive-shells) ;; if you want interactive shell support
-  (venv-initialize-eshell) ;; if you want eshell support
-  (setq venv-project-home
-        (expand-file-name (or (getenv "PROJECT_HOME") "~/Dropbox/Work/projects/")))
-  (setq venv-location "~/bin/virtualenvs")
-  (add-hook 'venv-postactivate-hook (lambda () (workon-venv)))
-  (defun workon-venv ()
-    "change directory to project in eshell"
-    (eshell/cd (concat venv-project-home venv-current-name))))
+  (setq eat-kill-buffer-on-exit t
+        eat-enable-yank-to-terminal t
+        eat-enable-directory-tracking t
+        eat-enable-shell-command-history t
+        eat-enable-shell-prompt-annotation t
+        eat-term-scrollback-size nil)
+  ;; For `eat-eshell-mode' -- integration with eshell.
+  (add-hook 'eshell-load-hook #'eat-eshell-mode))
 
 ;;; Tramp
 ;; An easy way to ssh
 (use-package tramp
-  :straight nil
+  ;; :straight nil
+  :ensure nil
   :defer 1
   :config
   (setq tramp-persistency-file-name (concat lem-cache-dir "tramp")
@@ -223,8 +114,6 @@ shell exits, the buffer is killed."
 ;; ControlPersist yes
 ;; ServerAliveInterval 10
 ;; ServerAliveCountMax 10
-
-(use-package tramp-term :commands tramp-term)
 
 ;;; Provide Shell
 (provide 'lem-setup-shell)
