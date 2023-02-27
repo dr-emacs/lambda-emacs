@@ -3,6 +3,7 @@ eln-cache
 tabsession.el
 projects
 var
+elpa
 lambda-library/lambda-user
 /eshell/
 /transient/
