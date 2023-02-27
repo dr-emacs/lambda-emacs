@@ -28,16 +28,16 @@
   :straight (:type git :host github :repo "lambda-emacs/lambda-line")
   :custom
   (lambda-line-abbrev t)
-  (lambda-line-position 'bottom)
+  (lambda-line-position 'top)
   (lambda-line-hspace "  ")
   (lambda-line-prefix t)
   (lambda-line-prefix-padding nil)
   (lambda-line-status-invert nil)
-  (lambda-line-gui-ro-symbol  " ⨂")  ;; ⬤◯⨂
-  (lambda-line-gui-mod-symbol " ⬤") ;; ⨀⬤
-  (lambda-line-gui-rw-symbol  " ◯")  ;; ◉ ◎ ⬤◯
-  ;; (lambda-line-space-top +.50)
-  ;; (lambda-line-space-bottom -.50)
+  (lambda-line-gui-ro-symbol  " ⨂")  ; ⬤◯⨂
+  (lambda-line-gui-mod-symbol " ⬤")  ; ⨀⬤
+  (lambda-line-gui-rw-symbol  " ◯")  ; ◉ ◎ ⬤◯
+  (lambda-line-space-top +.20)
+  (lambda-line-space-bottom -.20)
   (lambda-line-symbol-position 0.1)
   :custom-face
   (lambda-line-visual-bell ((t (:background "red3"))))
