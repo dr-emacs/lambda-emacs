@@ -54,7 +54,7 @@
    magit-diff
    magit-log
    magit-status)
-  :hook (git-commit-mode . turn-on-flyspell)
+  ;; :hook (git-commit-mode . turn-on-flyspell)
   :bind ((:map magit-log-mode-map
           ;; Keybindings for use with updating packages interactively
           ("Q" . #'exit-recursive-edit)))
@@ -82,8 +82,8 @@
   ;; no magit header line as it conflicts w/bespoke-modeline
   (advice-add 'magit-set-header-line-format :override #'ignore)
   ;; display magit setting
-  (setq magit-display-buffer-function #'lem-display-magit-in-other-window)
-  ;; (setq magit-display-buffer-function #'lem-magit-display-buffer-pop-up-frame)
+  ;; (setq magit-display-buffer-function #'lem-display-magit-in-other-window)
+  (setq magit-display-buffer-function #'lem-magit-display-buffer-pop-up-frame)
   )
 
 ;; optional: display magit status in new frame

@@ -122,8 +122,40 @@
 
 ;;;;; Go
 (use-package go-mode
-  :commands go-mode)
+  :defer t
+  :hook
+  (go-mode . (lambda ()
+               (setq tab-width 4)))
+  :config
+  (add-hook 'before-save-hook 'gofmt-before-save)
+  ;; :hook (before-save-hook . gofmt-before-save)
+  )
+
+(use-package go-snippets :defer t)
+
+;; (use-package gotest
+;;   :bind (:map go-mode-map
+;;          ("C-c a t" . #'go-test-current-test)))
+
+(use-package flymake-shellcheck
+  :commands flymake-shellcheck-load
+  :hook (sh-mode-hook . flymake-shellcheck-load))
+
+(use-package shfmt
+  :config (add-hook 'before-save-hook 'shfmt-on-save-mode)
+  ;; :hook (before-save-hook . gofmt-before-save)
+  :hook (before-savehook . shfmt-on-save-mode)
+  :hook (sh-mode-hook . shfmt-on-save-mode)
+  :hook (sh-mode-hook . flymake-shellcheck-load)
+  )
+
+(use-package fish-mode :defer t)
+
+(use-package dpkg-dev-el :defer t)
+
+(use-package pass :defer t)
 
 ;;; Provide
 (provide 'lem-setup-go)
+
 ;;; lem-setup-go.el ends here

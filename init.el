@@ -280,7 +280,7 @@ emacs-version string on the kill ring."
 ;; configure it to treat elisp comments as headings.
 (use-package outline
   :straight (:type built-in)
-  :hook (prog-mode . outline-minor-mode)
+  ;; :hook (prog-mode . outline-minor-mode)
   :bind (:map outline-minor-mode-map
          ("<tab>"   . outline-cycle)
          ("S-<tab>" . outline-cycle-buffer)

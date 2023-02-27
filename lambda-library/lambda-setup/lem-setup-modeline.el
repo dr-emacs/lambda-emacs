@@ -28,7 +28,7 @@
   :straight (:type git :host github :repo "lambda-emacs/lambda-line")
   :custom
   (lambda-line-abbrev t)
-  (lambda-line-position 'top)
+  (lambda-line-position 'bottom)
   (lambda-line-hspace "  ")
   (lambda-line-prefix t)
   (lambda-line-prefix-padding nil)

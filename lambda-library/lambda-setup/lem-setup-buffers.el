@@ -98,8 +98,8 @@
         '(context-menu-ffap
           occur-context-menu
           context-menu-region
-          context-menu-undo
-          context-menu-dictionary)))
+          context-menu-undo)))
+;; context-menu-dictionary
 
 
 ;;;; Switch to Buffer Preserve Window

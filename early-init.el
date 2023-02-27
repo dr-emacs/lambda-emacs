@@ -142,7 +142,7 @@
 ;; larger than the system default.
 (setq-default frame-inhibit-implied-resize t)
 ;; HACK: Don't show size info (or anything else) in frame title
-(setq-default frame-title-format "\n")
+;; (setq-default frame-title-format "\n")
 ;; Disable start-up screen
 (setq-default inhibit-startup-screen t)
 (setq-default inhibit-startup-message t)
@@ -157,8 +157,8 @@
 (push '(tool-bar-lines . 0)   default-frame-alist)
 (push '(vertical-scroll-bars) default-frame-alist)
 ;; Set a minimum size for frame so that splash can easily display
-(push '(width . 175) default-frame-alist)
-(push '(height . 60) default-frame-alist)
+(push '(width . 132) default-frame-alist)
+(push '(height . 48) default-frame-alist)
 
 ;; And set these to nil so users don't have to toggle the modes twice to
 ;; reactivate them.
