@@ -82,6 +82,7 @@
 
 ;;;;; EAT (Emulate a terminal)
 (use-package eat
+  :disabled
   :config
   (setq eat-kill-buffer-on-exit t
         eat-enable-yank-to-terminal t
@@ -95,6 +96,7 @@
 ;;; Tramp
 ;; An easy way to ssh
 (use-package tramp
+  :disabled
   ;; :straight nil
   :ensure nil
   :defer 1

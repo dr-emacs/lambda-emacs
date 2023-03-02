@@ -483,6 +483,7 @@ targets."
 
 ;;;;; Kind Icon (For Corfu)
 (use-package kind-icon
+  :disabled
   :straight (:type git :host github :repo "jdtsmith/kind-icon")
   :after corfu
   :custom

@@ -72,10 +72,10 @@
 
 ;;;;; Edit & Traverse Delimiters
 
-(use-package puni
-  :straight (:type git :host github :repo "AmaiKinono/puni")
-  :hook ((prog-mode tex-mode org-mode markdown-mode
-                    eval-expression-minibuffer-setup) . puni-mode))
+;; (use-package puni
+;;   :straight (:type git :host github :repo "AmaiKinono/puni")
+;;   :hook ((prog-mode tex-mode org-mode markdown-mode
+;;                     eval-expression-minibuffer-setup) . puni-mode))
 
 
 ;;;; Multiple Cursors
@@ -86,10 +86,10 @@
 
 ;;;; Languages
 ;;;;; Applescript
-(use-package applescript-mode
-  :mode (("\\.scpt\\'" . applescript-mode)
-         ("\\.applescript\\'"       . applescript-mode))
-  :commands (applescript-mode))
+;; (use-package applescript-mode
+;;   :mode (("\\.scpt\\'" . applescript-mode)
+;;          ("\\.applescript\\'"       . applescript-mode))
+;;   :commands (applescript-mode))
 
 ;;;;; Elisp
 ;;;;;; Lisp Packages
@@ -313,10 +313,10 @@ Lisp function does not specify a special indentation."
   (add-hook 'yaml-mode-hook (lambda () (run-hooks 'prog-mode-hook))))
 
 ;;;;; Plist
-(use-package plist-mode
-  :straight nil
-  :load-path "~/bin/lisp-projects/plist-mode"
-  :commands (plist-mode))
+;; (use-package plist-mode
+;;   :straight nil
+;;   :load-path "~/bin/lisp-projects/plist-mode"
+;;   :commands (plist-mode))
 
 ;;;;; Vim
 ;; (use-package vimrc-mode
